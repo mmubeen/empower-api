@@ -12,9 +12,11 @@ spec:
       labels:
         app: empower-api
     spec:
+      securityContext:
+        fsGroup: 2000
       containers:
       - name: empower-api
-        image: busybox:latest
+        image: nginx:latest
         ports:
         - name: http
           containerPort: 8080
@@ -60,10 +62,9 @@ spec:
         securityContext:
           capabilities:
             add:
-            - NET_ADMIN
-            - SYS_TIME
-          runAsUser: 1000
-          allowPrivilegeEscalation: false
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
