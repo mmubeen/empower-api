@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: empower-api
-        image: nginx:latest
+        image: busybox:latest
         ports:
         - name: http
           containerPort: 8080
